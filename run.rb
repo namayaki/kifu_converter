@@ -130,8 +130,9 @@ class Board
     hand = @turn % 2 == 0 ? @white_hand : @black_hand
 
     # fromの処理
-    if from_x == 9 && from_y == 9
+    if from_x == 9 && from_y == -1
       hand[piece] = hand[piece] - 1
+      raise Exception.exception("invalid hand piece") if hand[piece] < 0
     else
       @board[from_y][from_x] = ''
     end

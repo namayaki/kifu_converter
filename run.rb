@@ -158,8 +158,8 @@ def convert_csa(file_path)
   moves = []
   File.open(file_path, encoding: 'Windows-31J') do |file|
     file.each_line do |line|
-      line =  line.encode('UTF-8')
-      m = line.match(/.+? (.+?)  \(.+?\).+?/)
+      line =  line.encode('UTF-8') rescue next
+      m = line.match(/.+? (.+?)  \(.+?\).*?/)
       next unless m
       moves << convert_csa_move(m[1])
     end
